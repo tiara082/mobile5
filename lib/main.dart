@@ -28,15 +28,15 @@ class _StudentProfileAppState extends State<StudentProfileApp> {
       title: 'Student Profile - Week 1',
       debugShowCheckedModeBanner: false,
       themeMode: _themeMode,
-      // Premium Light Theme
+      // Premium Warm Brown Light Theme
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.teal,
-        scaffoldBackgroundColor: const Color(0xFFF3F4F6),
+        primarySwatch: Colors.brown,
+        scaffoldBackgroundColor: const Color(0xFFF9F6F0), // Warm Cream / Linen
         cardTheme: CardThemeData(
           color: Colors.white,
           elevation: 4,
-          shadowColor: Colors.black.withValues(alpha: 0.08),
+          shadowColor: const Color(0x1F7F5539), // Soft brown shadow
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -45,25 +45,25 @@ class _StudentProfileAppState extends State<StudentProfileApp> {
           headlineMedium: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF1F2937),
+            color: Color(0xFF3F2E21), // Deep Espresso
           ),
           bodyLarge: TextStyle(
             fontSize: 16,
-            color: Color(0xFF4B5563),
+            color: Color(0xFF5C4738), // Medium Brown
           ),
           bodyMedium: TextStyle(
             fontSize: 14,
-            color: Color(0xFF6B7280),
+            color: Color(0xFF7F6A5B), // Muted Brown
           ),
         ),
         useMaterial3: true,
       ),
-      // Premium Dark Theme
+      // Premium Warm Espresso Dark Theme
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        scaffoldBackgroundColor: const Color(0xFF1C1412), // Deep Charcoal-Espresso
         cardTheme: CardThemeData(
-          color: const Color(0xFF1E293B),
+          color: const Color(0xFF2C201C), // Roasted Coffee Bean
           elevation: 6,
           shadowColor: Colors.black.withValues(alpha: 0.3),
           shape: RoundedRectangleBorder(
@@ -74,15 +74,15 @@ class _StudentProfileAppState extends State<StudentProfileApp> {
           headlineMedium: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Color(0xFFF8FAFC),
+            color: Color(0xFFEAE3DC), // Almond White
           ),
           bodyLarge: TextStyle(
             fontSize: 16,
-            color: Color(0xFFCBD5E1),
+            color: Color(0xFFD6C5B7), // Light Warm Gray
           ),
           bodyMedium: TextStyle(
             fontSize: 14,
-            color: Color(0xFF94A3B8),
+            color: Color(0xFFA39284), // Muted Sand
           ),
         ),
         useMaterial3: true,
@@ -110,12 +110,12 @@ class ProfileHomeScreen extends StatefulWidget {
 }
 
 class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
-  // Student Profile details (Stateful to allow editing & demonstrate declarative UI)
-  String _name = "Muhammad Daffa";
+  // Student Profile details with correct name and email
+  String _name = "Tiara Febrianie";
   String _studentId = "244107020097";
   String _major = "Teknologi Informasi";
   String _class = "TI-2H";
-  String _email = "daffa.student@example.com";
+  String _email = "tiarafebrianie308@gmail.com";
   String _hobby = "Mobile App Development";
 
   // State to demonstrate Hot Reload vs Hot Restart
@@ -204,7 +204,9 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final primaryColor = widget.isDarkMode ? const Color(0xFF64FFDA) : Colors.teal;
+    // Aesthetic warm brown tones
+    final primaryColor = widget.isDarkMode ? const Color(0xFFDDB892) : const Color(0xFF7F5539);
+    final accentColor = widget.isDarkMode ? const Color(0xFFE6CCB2) : const Color(0xFF9C6644);
 
     return Scaffold(
       appBar: AppBar(
@@ -219,7 +221,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
           IconButton(
             icon: Icon(
               widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-              color: widget.isDarkMode ? Colors.amber : Colors.indigo,
+              color: widget.isDarkMode ? const Color(0xFFFFD166) : const Color(0xFF4A3E3D),
             ),
             onPressed: widget.onThemeToggle,
             tooltip: 'Toggle Dark/Light Mode',
@@ -245,7 +247,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           gradient: LinearGradient(
-                            colors: [primaryColor, Colors.blueAccent],
+                            colors: [primaryColor, accentColor],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -257,7 +259,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
                             radius: 50,
                             backgroundColor: primaryColor.withValues(alpha: 0.15),
                             child: Text(
-                              _name.isNotEmpty ? _name[0].toUpperCase() : 'S',
+                              _name.isNotEmpty ? _name[0].toUpperCase() : 'T',
                               style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold,
@@ -309,6 +311,8 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
                         icon: const Icon(Icons.edit_outlined),
                         label: const Text('Edit Student Details'),
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          foregroundColor: widget.isDarkMode ? const Color(0xFF1C1412) : Colors.white,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 20,
                             vertical: 12,
@@ -497,7 +501,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Row(
         children: [
-          Icon(icon, color: Colors.blueAccent, size: 24),
+          Icon(icon, color: widget.isDarkMode ? const Color(0xFFDDB892) : const Color(0xFF9C6644), size: 24),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
@@ -530,7 +534,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
     final theme = Theme.of(context);
     return Card(
       child: ExpansionTile(
-        leading: Icon(icon, color: Colors.amber),
+        leading: Icon(icon, color: widget.isDarkMode ? const Color(0xFFE6CCB2) : const Color(0xFF9C6644)),
         title: Text(
           title,
           style: const TextStyle(fontWeight: FontWeight.bold),

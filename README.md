@@ -5,7 +5,7 @@ This repository contains the first week's assignment for the Mobile Application 
 ---
 
 ## 👨‍🎓 Student Details
-* **Name:** Muhammad Daffa
+* **Name:** Tiara Febrianie
 * **Student ID (NIM):** 244107020097
 * **Major:** Teknologi Informasi (Information Technology)
 * **Class:** TI-2H
@@ -16,7 +16,7 @@ This repository contains the first week's assignment for the Mobile Application 
 ## 📱 Application Overview
 The application is a state-of-the-art Student Profile dashboard featuring:
 * **Interactive Profile Editor:** Users can update student details (Name, NIM, Major, Class, Email, and Hobbies) dynamically using a bottom dialog. This demonstrates **state changes** and **declarative UI rendering**.
-* **Premium Theme Switcher:** Fully supports Dark and Light themes with an elegant transition.
+* **Warm Brown Theme Switcher:** Fully supports Dark (Espresso) and Light (Warm Cream) themes with elegant transitions, designed with an organic, clean warm brown coffee-inspired palette.
 * **Interactive Hot Reload vs Hot Restart Visualizer:** Contains an interactive state counter demonstrating how a Hot Reload preserves the counter's state, while a Hot Restart resets it to `0`.
 * **Built-in Reflections Reader:** An accordion style viewer that details academic concepts.
 
@@ -84,4 +84,3 @@ Native development (Kotlin/Java for Android, Swift/Objective-C for iOS) is prefe
 Below is a screenshot of the running Student Portfolio application:
 
 ![Student Portfolio App](screenshot.jpg)
-
