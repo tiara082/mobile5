@@ -14,7 +14,7 @@ void main() {
     expect(find.textContaining('244107020097'), findsAtLeast(1));
 
     // Verify that the student Name is displayed.
-    expect(find.text('Muhammad Daffa'), findsOneWidget);
+    expect(find.text('Tiara Febrianie'), findsOneWidget);
 
     // Verify that the theme toggle is present (Icon button).
     expect(find.byType(IconButton), findsAtLeast(1));
