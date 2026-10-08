@@ -115,7 +115,7 @@ Repository containing lab assignments and coursework for the Mobile Application 
 - [ ] **Week 3:** [Navigation & State Management](./03-week-3-navigation-state-management/)
 - [ ] **Week 4:** [Networking & REST API](./04-week-4-networking-rest-api/)
 - [ ] **Week 5:** [Local Storage & Offline First](./05-week-5-local-storage-offline-first/)
-- [ ] **Week 6:** [Authentication, Security & FCM](./06-week-6-authentication-security-fcm/)
+- [x] **Week 6:** [Authentication, Security & FCM](./06-week-6-authentication-security-fcm/)
 - [ ] **Week 7:** [Clean Architecture](./07-week-7-clean-architecture/)
 - [ ] **Week 8:** [Mid-Project Review](./08-week-8-mid-project-review/)
 - [ ] **Week 9:** [AI-Assisted Development](./09-week-9-ai-assisted-development/)
