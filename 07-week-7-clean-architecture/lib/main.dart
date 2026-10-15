@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import 'features/announcements/presentation/pages/announcement_detail_page.dart';
+import 'features/announcements/presentation/pages/announcements_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
+import 'features/auth/presentation/providers/auth_providers.dart';
+import 'routes.dart';
+
+final appRouter = GoRouter(
+  initialLocation: AppRoutes.home,
+  refreshListenable: routerRefresh,
+  redirect: (context, state) {
+    final loggedIn =
+        ProviderScope.containerOf(context).read(authStateProvider).value ??
+            false;
+    final onLogin = state.matchedLocation == AppRoutes.login;
+    if (!loggedIn && !onLogin) return AppRoutes.login;
+    if (loggedIn && onLogin) return AppRoutes.home;
+    return null;
+  },
+  routes: [
+    GoRoute(path: AppRoutes.login, builder: (_, __) => const LoginPage()),
+    GoRoute(
+        path: AppRoutes.home, builder: (_, __) => const AnnouncementsPage()),
+    GoRoute(
+      path: AppRoutes.announcement,
+      builder: (_, state) => AnnouncementDetailPage(
+        id: state.pathParameters['id'] ?? '',
+      ),
+    ),
+  ],
+);
+
+void main() {
+  runApp(const ProviderScope(child: CampusNotifyApp()));
+}
+
+class CampusNotifyApp extends StatelessWidget {
+  const CampusNotifyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'Campus Notify',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
+      routerConfig: appRouter,
+    );
+  }
+}

@@ -1,0 +1,35 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../data/repositories/announcement_repository_impl.dart';
+import '../../domain/entities/announcement.dart';
+import '../../domain/repositories/announcement_repository.dart';
+import '../../domain/usecases/get_announcement.dart';
+import '../../domain/usecases/get_announcements.dart';
+
+final announcementRepositoryProvider = Provider<AnnouncementRepository>(
+  (ref) => AnnouncementRepositoryImpl(),
+);
+
+final getAnnouncementsProvider = Provider<GetAnnouncements>(
+  (ref) => GetAnnouncements(ref.watch(announcementRepositoryProvider)),
+);
+
+final getAnnouncementProvider = Provider<GetAnnouncement>(
+  (ref) => GetAnnouncement(ref.watch(announcementRepositoryProvider)),
+);
+
+final announcementsProvider = FutureProvider<List<Announcement>>((ref) async {
+  final result = await ref.watch(getAnnouncementsProvider).call();
+  if (result.failure != null) throw Exception(result.failure!.message);
+  return result.announcements;
+});
+
+final announcementProvider = FutureProvider.family<Announcement, String>(
+  (ref, id) async {
+    final result = await ref.watch(getAnnouncementProvider).call(id);
+    if (result.failure != null || result.announcement == null) {
+      throw Exception(result.failure?.message ?? 'Pengumuman tidak ditemukan.');
+    }
+    return result.announcement!;
+  },
+);
